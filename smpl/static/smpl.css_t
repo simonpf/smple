@@ -166,18 +166,29 @@ div.sphinxsidebar {
     padding-top: 20px;
 }
 
-div.sphinxsidebar > a {
-    border: 0px;
+div.sphinxsidebarwrapper  a:link,
+div.sphinxsidebarwrapper  a:visited
+{
+    border-bottom: 0;
+    color: black;
+}
+
+div.sphinxsidebarwrapper  a:hover
+{
+    border-bottom: 1px dotted;
 }
 
 
 div.sphinxsidebar ul {
     list-style: none;
+    padding-left: 0;
+    font-size: 100%:
 }
 
 div.sphinxsidebar ul ul,
 div.sphinxsidebar ul.want-points {
     list-style: none;
+    padding-left: 1em;
 }
 
 div.sphinxsidebar ul ul {
