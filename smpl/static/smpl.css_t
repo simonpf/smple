@@ -109,6 +109,15 @@ div.clearer {
     clear: both;
 }
 
+div.documentwrapper {
+    width: 100%;
+}
+
+div.bodywrapper {
+    height: 100%;
+    left: 15%;
+    right: 85;
+}
 
 /******************************************************************************/
 /* Related ********************************************************************/
@@ -142,9 +151,9 @@ div.related li.right {
 /* Side Bar *******************************************************************/
 /******************************************************************************/
 
-div.sphinxsidebarwrapper {
+div.sphinxsidebarwrapper_left {
     height: 100%; /* Full-height: remove this if you want "auto" height */
-    width: 15%; /* Set the width of the sidebar */
+    width: 15%;
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
@@ -153,16 +162,37 @@ div.sphinxsidebarwrapper {
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 100px;
     padding-left: 2em;
+    overflow: auto;
 }
 
-div.sphinxsidebar {
-    margin-left: -100%;
+div.sphinxsidebar_left {
     border: 5px solid #000000;
     word-wrap: break-word;
     overflow-wrap : break-word;
     z-index: 1; /* Stay on top */
     background-color: #111; /* Black */
+    padding-top: 20px;
+}
+
+div.sphinxsidebarwrapper_right {
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 15%;
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    right: 0;
+    background-color: white; /* Black */
     overflow-x: hidden; /* Disable horizontal scroll */
+    padding: 2em;
+    overflow: auto;
+}
+
+div.sphinxsidebar_right {
+    border: 5px solid #000000;
+    word-wrap: break-word;
+    overflow-wrap : break-word;
+    z-index: 1; /* Stay on top */
+    background-color: #111; /* Black */
     padding-top: 20px;
 }
 
@@ -353,12 +383,14 @@ table.modindextable td {
 div.bodywrapper {
     width: 80%;
     margin: 0 auto;
+    display: flex;
 }
 
 div.body {
     min-width: {{ theme_body_min_width|todim }};
     max-width: {{ theme_body_max_width|todim }};
     margin: 0 auto;
+    float: left;
 }
 
 div.body p, div.body dd, div.body li, div.body blockquote {
