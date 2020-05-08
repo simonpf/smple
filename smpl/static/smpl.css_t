@@ -3,7 +3,7 @@
 /* Fonts **********************************************************************/
 /******************************************************************************/
 
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;1,400;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
 
 div {
@@ -17,7 +17,7 @@ headerlink {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-weight:600;
+    font-weight:700;
     line-height:normal;
 }
 
@@ -113,19 +113,15 @@ div.documentwrapper {
     width: 100%;
 }
 
-div.bodywrapper {
-    height: 100%;
-    left: 15%;
-    right: 85;
-}
 
 /******************************************************************************/
 /* Related ********************************************************************/
 /******************************************************************************/
 
 div.related {
-    width: 100%;
-    font-size: 90%;
+    position: absolute;
+    left: 1%;
+    font-size: 100%;
 }
 
 div.related h3 {
@@ -152,49 +148,51 @@ div.related li.right {
 /******************************************************************************/
 
 div.sphinxsidebarwrapper_left {
-    height: 100%; /* Full-height: remove this if you want "auto" height */
-    width: 15%;
-    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-    z-index: 1; /* Stay on top */
-    top: 0; /* Stay at the top */
-    left: 0;
     background-color: white; /* Black */
     overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 100px;
-    padding-left: 2em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
     overflow: auto;
 }
 
 div.sphinxsidebar_left {
-    border: 5px solid #000000;
+    width: calc((100% - min(800px, 70%)) / 2);
+    position: fixed;
+    height: 100%;
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
     word-wrap: break-word;
     overflow-wrap : break-word;
     z-index: 1; /* Stay on top */
-    background-color: #111; /* Black */
-    padding-top: 20px;
-}
-
-div.sphinxsidebarwrapper_right {
-    height: 100%; /* Full-height: remove this if you want "auto" height */
-    width: 15%;
-    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-    z-index: 1; /* Stay on top */
-    top: 0; /* Stay at the top */
-    right: 0;
-    background-color: white; /* Black */
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding: 2em;
-    overflow: auto;
 }
 
 div.sphinxsidebar_right {
-    border: 5px solid #000000;
+    width: calc((100% - min(800px, 70%)) / 2);
+    position: fixed;
+    height: 100%;
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: calc(min(800px, 70%) + (100% - min(800px, 70%)) / 2);
     word-wrap: break-word;
     overflow-wrap : break-word;
     z-index: 1; /* Stay on top */
-    background-color: #111; /* Black */
-    padding-top: 20px;
 }
+
+div.sphinxsidebarwrapper_right {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background-color: white; /* Black */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    overflow: auto;
+}
+
 
 div.sphinxsidebarwrapper  a:link,
 div.sphinxsidebarwrapper  a:visited
@@ -262,7 +260,23 @@ img {
 }
 
 /******************************************************************************/
-/* Side Bar *******************************************************************/
+/* Footer *******************************************************************/
+/******************************************************************************/
+
+div.footer {
+     position: fixed;
+     top: 96%;
+     width: 100%;
+}
+
+div.footerwrapper {
+     position: absolute;
+     right: 1%;
+     top: 95%;
+}
+
+/******************************************************************************/
+/* Lists **********************************************************************/
 /******************************************************************************/
 
 ul.search {
@@ -381,16 +395,14 @@ table.modindextable td {
 /******************************************************************************/
 
 div.bodywrapper {
-    width: 80%;
-    margin: 0 auto;
-    display: flex;
+    width: min(800px, 70%);
+    left: calc((100% - min(800px, 70%)) / 2);
+    position: fixed;
 }
 
 div.body {
-    min-width: {{ theme_body_min_width|todim }};
-    max-width: {{ theme_body_max_width|todim }};
+    width: min(800px, 70%);
     margin: 0 auto;
-    float: left;
 }
 
 div.body p, div.body dd, div.body li, div.body blockquote {
