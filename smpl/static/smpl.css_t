@@ -391,18 +391,67 @@ table.modindextable td {
 }
 
 /******************************************************************************/
+/* navigation bar *************************************************************/
+/******************************************************************************/
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+div.navigation_bar {
+  width: 100%;
+  min-height: {{ theme_navigation_bar_minimum_height }};
+  height: auto;
+  top: 0%;
+  background-color: {{ theme_navigation_bar_background_color }};
+  align-items: stretch;
+  display: flex;
+}
+
+div.navigation_bar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+}
+
+div.navigation_bar li {
+float: left;
+}
+
+div.navigation_bar li a {
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+div.navigation_bar li a:hover {
+  background-color: #555;
+  color: white;
+}
+
+div.logo_wrapper {
+    width: calc((100% - min(800px, 70%)) / 2);
+    left: 0%;
+}
+
+/******************************************************************************/
 /* Body ***********************************************************************/
 /******************************************************************************/
 
 div.bodywrapper {
     width: min(800px, 70%);
     left: calc((100% - min(800px, 70%)) / 2);
-    position: fixed;
+    width: 100%;
 }
 
 div.body {
     width: min(800px, 70%);
     margin: 0 auto;
+    overflow: auto;
 }
 
 div.body p, div.body dd, div.body li, div.body blockquote {
