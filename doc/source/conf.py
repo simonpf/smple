@@ -48,6 +48,10 @@ exclude_patterns = []
 #
 html_theme = 'smpl'
 html_theme_path = ["../.."]
+#html_theme_options = {
+#    "navigation_bar_names" : ["Home", "Customization"],
+#    "navigation_bar_targets" : ["index.html", "customization.html"]
+#}
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
