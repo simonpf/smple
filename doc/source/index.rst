@@ -4,8 +4,8 @@ The SMPL theme
 Aim
 ---
 
-The aim of the :code:`smpl` theme is to provide a simple and clean sphinx theme that
-is highly customizable through python.
+The aim of the :code:`smpl` Sphinx theme is to provide a clean and simple layout that
+is highly customizable.
 
 
 .. toctree::

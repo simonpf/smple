@@ -110,6 +110,7 @@ div.clearer {
 
 div.documentwrapper {
     width: 100%;
+    padding: {{ theme_documentwrapper_padding }};
 }
 
 
@@ -372,17 +373,17 @@ table.modindextable td {
     border-collapse: collapse;
 }
 
-/******************************************************************************/
-/* navigation bar *************************************************************/
-/******************************************************************************/
-
 body {
   margin: 0;
   padding: 0;
-  background-color: theme_background_color;
+  background-color: {{ theme_background_color }};
   text-align: justify;
   text-justify: inter-word;
 }
+
+/******************************************************************************/
+/* navigation bar *************************************************************/
+/******************************************************************************/
 
 div.navigation_bar {
   width: 100%;
@@ -420,11 +421,15 @@ div.navigation_bar li {
 div.navigation_bar li a {
   text-decoration: none;
   border: none;
+  color: {{theme_navigation_bar_element_color}};
+  font-size: {{ theme_navigation_bar_element_font_size }};
+  font-weight: {{theme_navigation_bar_element_font_weight}};
 }
 
 div.navigation_bar li a:hover {
-  background-color: #555;
-  color: white;
+   font-weight: {{ theme_navigation_bar_element_hover_font_weight }};
+   color: {{ theme_navigation_bar_element_hover_color }};
+   text-decoration: {{ theme_navigation_bar_element_hover_text_decoration }};
 }
 
 div.logo_wrapper {
