@@ -15,19 +15,23 @@ headerlink {
     border: 0px;
 }
 
+
 h1, h2, h3, h4, h5, h6 {
     font-weight:700;
     line-height:normal;
 }
 
 h1 {
-    font-size: 200%;
-    border-bottom: 2px solid black;
     display: inline-block;
-    margin-left: -1em;
-    padding-left: 1em;
-    margin-right: 1em;
-    padding-right: -1em;
+    font-size: {{theme_h1_font_size }};
+    border-bottom: {{ theme_h1_border_bottom }};
+    margin: {{ theme_h1_margin }};
+    padding: {{ theme_h1_padding }};
+}
+
+h2 {
+    margin: {{ theme_h2_margin }};
+    padding: {{ theme_h2_padding }};
 }
 
 h1 > a {
@@ -61,7 +65,15 @@ cite {
 
 code > span {
     font-family: 'Source Code Pro', monospace;
-    background-color: #f0f0f0;
+    background-color: #DDDDDD;
+}
+
+div.highlight {
+    font-family: 'Source Code Pro', monospace;
+    background-color: #DDDDDD;
+    font-size: {{ theme_highlight_font_size }};
+    padding: {{ theme_highlight_padding }};
+    margin: {{ theme_highlight_padding }};
 }
 
 dl > dt {
@@ -146,17 +158,6 @@ div.related li.right {
 /* Side Bar *******************************************************************/
 /******************************************************************************/
 
-div.sphinxsidebarwrapper_left {
-    background-color: white; /* Black */
-    overflow-x: hidden; /* Disable horizontal scroll */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    overflow: auto;
-}
-
 div.sphinxsidebar_left {
     width: calc((100% - min(800px, 70%)) / 2);
     position: fixed;
@@ -167,6 +168,19 @@ div.sphinxsidebar_left {
     word-wrap: break-word;
     overflow-wrap : break-word;
     z-index: 1; /* Stay on top */
+}
+
+div.sphinxsidebarwrapper_left {
+    background-color: white; /* Black */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background-color: {{ theme_sidebar_left_background_color }};
+    padding: {{ theme_sidebar_left_padding }};
+    overflow: auto;
 }
 
 div.sphinxsidebar_right {
@@ -190,6 +204,8 @@ div.sphinxsidebarwrapper_right {
     background-color: white; /* Black */
     overflow-x: hidden; /* Disable horizontal scroll */
     overflow: auto;
+    background-color: {{ theme_sidebar_right_background_color }};
+    padding: {{ theme_sidebar_right_padding }};
 }
 
 
@@ -375,6 +391,7 @@ table.modindextable td {
 
 body {
   margin: 0;
+  margin-bottom: 4em;
   padding: 0;
   background-color: {{ theme_background_color }};
   text-align: justify;
@@ -399,7 +416,6 @@ div.navigation_bar ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  width: 200px;
   height: 100%;
 }
 
@@ -416,6 +432,8 @@ div.navigation_bar li {
   display: flex;
   flex-direction: row;
   align-items: center;
+  padding-left: {{theme_navigation_bar_element_padding}};
+  padding-right: {{theme_navigation_bar_element_padding}};
 }
 
 div.navigation_bar li a {
@@ -586,7 +604,8 @@ p.topic-title {
 div.admonition {
     margin-top: 10px;
     margin-bottom: 10px;
-    padding: 7px;
+    padding: {{ theme_admonition_padding }};
+    margin: {{ theme_admonition_margin }};
 }
 
 div.admonition dt {
@@ -605,6 +624,11 @@ p.admonition-title {
 div.body p.centered {
     text-align: center;
     margin-top: 25px;
+}
+
+div.note {
+    background-color: {{ theme_note_background_color }};
+    border: {{ theme_note_border }};
 }
 
 /******************************************************************************/
