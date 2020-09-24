@@ -65,7 +65,8 @@ cite {
 
 code > span {
     font-family: 'Source Code Pro', monospace;
-    background-color: #DDDDDD;
+    background-color: {{ theme_inline_code_background_color }};
+    border-radius: {{ theme_inline_code_border_radius }};
 }
 
 div.highlight {
@@ -74,6 +75,7 @@ div.highlight {
     font-size: {{ theme_highlight_font_size }};
     padding: {{ theme_highlight_padding }};
     margin: {{ theme_highlight_padding }};
+    border-radius: {{ theme_highlight_border_radius }};
 }
 
 dl > dt {
@@ -629,6 +631,7 @@ div.body p.centered {
 div.note {
     background-color: {{ theme_note_background_color }};
     border: {{ theme_note_border }};
+    border-radius: {{ theme_note_border_radius }};
 }
 
 /******************************************************************************/
