@@ -2,7 +2,7 @@
 /* Fonts **********************************************************************/
 /******************************************************************************/
 
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,500;1,300;1,500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
 
 div {
@@ -55,8 +55,7 @@ h4 {
 /******************************************************************************/
 
 strong {
-    font-weight: 600;
-    font-style: italic;
+    font-weight: 500;
 }
 
 cite {
@@ -564,6 +563,22 @@ img.align-default, .figure.align-default {
 
 .align-right {
     text-align: right;
+}
+
+/******************************************************************************/
+/* Captions *******************************************************************/
+/******************************************************************************/
+
+.toctree-wrapper compound . caption {
+    font-size: {{ theme_toctree_caption_font_size }};
+    font-weight: {{ theme_toctree_caption_font_weight }};
+    padding: {{ theme_toctrees_caption_padding }};
+}
+
+.caption {
+    font-size: {{ theme_caption_font_size }};
+    font-weight: {{ theme_caption_font_weight }};
+    padding: {{ theme_caption_padding }};
 }
 
 /******************************************************************************/
