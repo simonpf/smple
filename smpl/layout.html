@@ -1,0 +1,219 @@
+{%- block doctype -%}
+<!DOCTYPE html>
+{%- endblock -%}
+
+{%- set reldelim1 = reldelim1 is not defined and ' &#187;' or reldelim1 %}
+{%- set reldelim2 = reldelim2 is not defined and ' |' or reldelim2 %}
+
+{% if theme_sidebars_left is string %}
+    {% set sidebars_left = theme_sidebars_left.split(',') %}
+{% else %}
+    {% set sidebars_left = theme_sidebars_left | list %}
+{% endif %}
+
+{% if theme_sidebars_right is string %}
+{% set sidebars_right = theme_sidebars_right.split(',') %}
+{% else %}
+{% set sidebars_right = theme_sidebars_right | list %}
+{% endif %}
+
+{% if theme_navigation_bar_names is string %}
+    {% set navigation_bar_names = theme_navigation_bar_names.split(",") %}
+{% else %}
+    {% set navigation_bar_names = theme_navigation_bar_names | list %}
+{% endif %}
+
+{% if theme_navigation_bar_targets is string %}
+    {% set navigation_bar_targets = theme_navigation_bar_targets.split(",") %}
+{% else %}
+    {% set navigation_bar_targets = theme_navigation_bar_targets | list %}
+{% endif %}
+
+{%- set render_sidebar_left = (not embedded) and (sidebars_left != []) %}
+{%- set render_sidebar_right = (not embedded) and (sidebars_right != []) %}
+{%- set render_navigation_bar = (not embedded) and (navigation_bar_elements != []) %}
+
+{%- set url_root = pathto('', 1) %}
+{%- if url_root == '#' %}{% set url_root = '' %}{% endif %}
+{%- if not embedded and docstitle %}
+  {%- set titlesuffix = " &#8212; "|safe + docstitle|e %}
+{%- else %}
+  {%- set titlesuffix = "" %}
+{%- endif %}
+
+{%- macro relbar() %}
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>{{ _('Navigation') }}</h3>
+      <ul>
+        {%- block rootrellink %}
+        <li class="nav-item nav-item-0"><a href="{{ pathto(master_doc)|e }}">{{ shorttitle|e }}</a>{{ reldelim1 }}</li>
+        {%- endblock %}
+        {%- for parent in parents %}
+          <li class="nav-item nav-item-{{ loop.index }}"><a href="{{ parent.link|e }}" {% if loop.last %}{{ accesskey("U") }}{% endif %}>{{ parent.title }}</a>{{ reldelim1 }}</li>
+        {%- endfor %}
+        <li class="nav-item nav-item-this"><a href="{{ link|e }}">{{ title }}</a></li>
+        {%- block relbaritems %} {% endblock %}
+      </ul>
+    </div>
+{%- endmacro %}
+
+{%- macro sidebar_left() %}
+      {%- if render_sidebar_left %}
+      <div class="sphinxsidebar_left" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper_left">
+          {%- block sidebarlogo %}
+          {%- if logo %}
+            <p class="logo"><a href="{{ pathto(master_doc)|e }}">
+              <img class="logo" src="{{ pathto('_static/' + logo, 1)|e }}" alt="Logo"/>
+            </a></p>
+          {%- endif %}
+          {%- endblock %}
+            {#- new style sidebar: explicitly include/exclude templates #}
+            {%- for sidebartemplate in sidebars_left %}
+            {%- include sidebartemplate %}
+            {%- endfor %}
+        </div>
+      </div>
+      {%- endif %}
+{%- endmacro %}
+
+{%- macro navigation_bar() %}
+{%- if render_navigation_bar %}
+      <div class="navigation_bar" role="navigation" aria-label="main navigation">
+          <div class="logo_wrapper" >
+              {%- include theme_navigation_bar_logo_template -%}
+          </div>
+          <div class="navigation_bar_wrapper">
+              <ul>
+                  {%- for name in navigation_bar_names -%}
+                  <li><a href="{{ pathto(navigation_bar_targets[loop.index - 1], 1) }}"> {{ name }}</a></li>
+                  {%- endfor -%}
+              </ul>
+          <div class="clearer"></div>
+          </div>
+      </div>
+{%- endif %}
+{%- endmacro %}
+
+
+{%- macro sidebar_right() %}
+      {%- if render_sidebar_right %}
+      <div class="sphinxsidebar_right" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper_right">
+            {%- for sidebartemplate in sidebars_right %}
+            {%- include sidebartemplate %}
+            {%- endfor %}
+        </div>
+      </div>
+      {%- endif %}
+{%- endmacro %}
+
+{%- macro script() %}
+    <script id="documentation_options" data-url_root="{{ pathto('', 1) }}" src="{{ pathto('_static/documentation_options.js', 1) }}"></script>
+    {%- for js in script_files %}
+    {{ js_tag(js) }}
+    {%- endfor %}
+{%- endmacro %}
+
+{%- macro css() %}
+    <link rel="stylesheet" href="{{ pathto('_static/' + style, 1)|e }}" type="text/css" />
+    <link rel="stylesheet" href="{{ pathto('_static/pygments.css', 1) }}" type="text/css" />
+    {%- for css in css_files %}
+      {%- if css|attr("filename") %}
+    {{ css_tag(css) }}
+      {%- else %}
+    <link rel="stylesheet" href="{{ pathto(css, 1)|e }}" type="text/css" />
+      {%- endif %}
+    {%- endfor %}
+{%- endmacro %}
+
+{%- if html_tag %}
+{{ html_tag }}
+{%- else %}
+<html{% if not html5_doctype %} xmlns="http://www.w3.org/1999/xhtml"{% endif %}{% if language is not none %} lang="{{ language }}"{% endif %}>
+{%- endif %}
+  <head>
+    {%- if not html5_doctype and not skip_ua_compatible %}
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    {%- endif %}
+    {%- if use_meta_charset or html5_doctype %}
+    <meta charset="{{ encoding }}" />
+    {%- else %}
+    <meta http-equiv="Content-Type" content="text/html; charset={{ encoding }}" />
+    {%- endif %}
+    {{- metatags }}
+    {%- block htmltitle %}
+    <title>{{ title|striptags|e }}{{ titlesuffix }}</title>
+    {%- endblock %}
+    {%- block css %}
+    {{- css() }}
+    {%- endblock %}
+    {%- if not embedded %}
+    {%- block scripts %}
+    {{- script() }}
+    {%- endblock %}
+    {%- if pageurl %}
+    <link rel="canonical" href="{{ pageurl|e }}" />
+    {%- endif %}
+    {%- if use_opensearch %}
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="{% trans docstitle=docstitle|e %}Search within {{ docstitle }}{% endtrans %}"
+          href="{{ pathto('_static/opensearch.xml', 1) }}"/>
+    {%- endif %}
+    {%- if favicon %}
+    <link rel="shortcut icon" href="{{ pathto('_static/' + favicon, 1)|e }}"/>
+    {%- endif %}
+    {%- endif %}
+{%- block linktags %}
+    {%- if hasdoc('about') %}
+    <link rel="author" title="{{ _('About these documents') }}" href="{{ pathto('about') }}" />
+    {%- endif %}
+    {%- if hasdoc('genindex') %}
+    <link rel="index" title="{{ _('Index') }}" href="{{ pathto('genindex') }}" />
+    {%- endif %}
+    {%- if hasdoc('search') %}
+    <link rel="search" title="{{ _('Search') }}" href="{{ pathto('search') }}" />
+    {%- endif %}
+    {%- if hasdoc('copyright') %}
+    <link rel="copyright" title="{{ _('Copyright') }}" href="{{ pathto('copyright') }}" />
+    {%- endif %}
+    {%- if next %}
+    <link rel="next" title="{{ next.title|striptags|e }}" href="{{ next.link|e }}" />
+    {%- endif %}
+    {%- if prev %}
+    <link rel="prev" title="{{ prev.title|striptags|e }}" href="{{ prev.link|e }}" />
+    {%- endif %}
+{%- endblock %}
+{%- block extrahead %} {% endblock %}
+  </head>
+  {%- block body_tag %}<body>{% endblock %}
+{%- block header %}{% endblock %}
+
+{%- block content %}
+
+    {%- block navigation_bar %}{{ navigation_bar() }}{% endblock %}
+    <div class="document">
+  {%- block document %}
+      <div class="documentwrapper">
+      {%- if (render_sidebar_left or render_sidebar_right) %}
+        <div class="bodywrapper">
+      {%- endif %}
+          <div class="body" role="main">
+            {% block body %} {% endblock %}
+            <div class="clearer"></div>
+          </div>
+      {%- if (render_sidebar_left or render_sidebar_right) %}
+        </div>
+      {%- endif %}
+      </div>
+  {%- endblock %}
+
+  {%- block sidebar_left %}{{ sidebar_left() }}{% endblock %}
+  {%- block sidebar_right %}{{ sidebar_right() }}{% endblock %}
+      <div class="clearer"></div>
+    </div>
+{%- endblock %}
+
+
+  </body>
+</html>
