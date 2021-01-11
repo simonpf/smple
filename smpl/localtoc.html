@@ -8,6 +8,7 @@ Sphinx sidebar template: local table of contents.
 :license: BSD, see LICENSE for details.
 #}
 {%- if display_toc %}
-<h3><a href="{{ pathto(master_doc) }}">{{ _('Table of Contents') }}</a></h3>
+<div class="localtoc">
 {{ toc }}
+</div>
 {%- endif %}
