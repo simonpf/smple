@@ -122,9 +122,16 @@ div.clearer {
     clear: both;
 }
 
+div.document {
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+}
+
 div.documentwrapper {
     width: 100%;
     padding: {{ theme_documentwrapper_padding }};
+    grid-column-start: 2;
+    grid-column-end: 3;
 }
 
 
@@ -161,9 +168,12 @@ div.related li.right {
 /******************************************************************************/
 
 div.sphinxsidebar_left {
-    width: calc((100% - min(800px, 70%)) / 2);
-    position: fixed;
-    height: 100%;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    position: -webkit-sticky;
+    position: sticky;
+    width: 100%;
+    /*position: fixed;*/
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
     left: 0;
@@ -173,19 +183,23 @@ div.sphinxsidebar_left {
 }
 
 div.sphinxsidebarwrapper_left {
+    position: -webkit-sticky;
+    position: sticky;
     background-color: white; /* Black */
     overflow-x: hidden; /* Disable horizontal scroll */
-    position: absolute;
-    top: 50%;
+    margin: auto;
+    top: 30vh;
+    margin-top: 10vh;
+    width: 60%;
     left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
     background-color: {{ theme_sidebar_left_background_color }};
     padding: {{ theme_sidebar_left_padding }};
     overflow: auto;
 }
 
 div.sphinxsidebar_right {
+    grid-column-start: 3;
+    grid-column-end: 4;
     width: calc((100% - min(800px, 70%)) / 2);
     position: fixed;
     height: 100%;
@@ -462,13 +476,12 @@ div.logo_wrapper {
 /******************************************************************************/
 
 div.bodywrapper {
-    width: min(800px, 70%);
     left: calc((100% - min(800px, 70%)) / 2);
     width: 100%;
 }
 
 div.body {
-    width: min(800px, 70%);
+    width: 90%;
     margin: 0 auto;
     overflow: auto;
 }
@@ -1071,7 +1084,17 @@ div.localtoc > ul > li > a {
 div.localtoc ul li ul  {
   list-style-type: none;
   margin: 0;
-  padding: 10px;
+  padding: 1em;
+}
+
+div.localtoc ul li ul li {
+  list-style-type: none;
+  margin-bottom: 0.5em;
+}
+
+div.globaltoc > h3 {
+    padding: 0px;
+    margin-bottom: 0px;
 }
 
 div.globaltoc h3 > a {
@@ -1082,6 +1105,11 @@ div.globaltoc ul {
   list-style-type: none;
   margin: 0;
   padding: 10px;
+}
+
+div.globaltoc ul li {
+  list-style-type: none;
+  margin-bottom: 0.5em;
 }
 
 /******************************************************************************/

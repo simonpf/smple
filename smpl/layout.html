@@ -194,6 +194,9 @@
     {%- block navigation_bar %}{{ navigation_bar() }}{% endblock %}
     <div class="document">
   {%- block document %}
+
+     {%- block sidebar_left %}{{ sidebar_left() }}{% endblock %}
+
       <div class="documentwrapper">
       {%- if (render_sidebar_left or render_sidebar_right) %}
         <div class="bodywrapper">
@@ -208,8 +211,8 @@
       </div>
   {%- endblock %}
 
-  {%- block sidebar_left %}{{ sidebar_left() }}{% endblock %}
   {%- block sidebar_right %}{{ sidebar_right() }}{% endblock %}
+
       <div class="clearer"></div>
     </div>
 {%- endblock %}
